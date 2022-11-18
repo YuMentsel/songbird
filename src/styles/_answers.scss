@@ -2,11 +2,13 @@
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 15px;
   width: 350px;
+  height: 350px;
   padding: 10px;
+  font-size: 24px;
 
   &__list {
     width: 100%;
-    height: 330px;
+    height: 100%;
     border-radius: 10px;
     border: 2px solid $grey;
     list-style: none;
@@ -20,7 +22,6 @@
     height: calc(100.01%/6);
     border-top: 2px solid $grey;
     padding: 10px 20px 12px 70px;
-    font-size: 24px;
     background: url('./assets/svg/answerColor/white.svg') 10px center  no-repeat;
     background-size: 40px;
     transition: 0.5s;
@@ -41,5 +42,13 @@
 
   .red {
     background-image: url('./assets/svg/answerColor/red.svg');
+  }
+}
+
+@media (max-width: 760px) {
+  .answers {
+    width: 100%;
+    height: 300px;
+    font-size: 18px;
   }
 }

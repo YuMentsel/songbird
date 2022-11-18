@@ -12,25 +12,25 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
     padding: 0;
-    height: 35px;
     list-style: none;
-    font-size: 18px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    border-radius: 10px;
-    background-color: $main-green;
-    overflow: hidden;
   }
 
   &__item {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-grow: 1;
     margin: 0;
-    height: 100%;
-    width: 100%;
-    border-left: 3px solid $dark-green;
+    height: 35px;
+    width: 165px;
+    font-size: 18px;
+    background-color: $main-green;
+    border-radius: 10px;
     &:first-child {
       border-left: none;
     }
@@ -50,4 +50,20 @@
   border: none;
   background-color: $main-green;
   cursor: pointer;
+}
+
+@media (max-width: 1060px) {
+  .nav__item {
+    height: 30px;
+    width:30%;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 520px) {
+  .nav__item {
+    height: 25px;
+    width:45%;
+    font-size: 14px;
+  }
 }

@@ -4,7 +4,7 @@
   flex-grow: 1;
   align-items: center;
   justify-content: space-between;
-  height: 350px;
+  min-height: 350px;
   width: 50%;
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 15px;
@@ -25,5 +25,48 @@
     width: 100%;
     padding: 10px 15px;
     font-size: 16px;
+  }
+}
+
+@media (max-width: 1060px) {
+  .bird-info {
+    .player {
+      &__bird-img {
+        height: 150px;
+        width: 195px;
+        background-size: auto 140px;
+      }
+      &__container {
+        height: 150px;
+        padding: 10px;
+      }
+      &__bird-name {
+        font-size: 24px;
+      }
+    }
+  }
+}
+
+@media (max-width: 960px) {
+  .bird-info {
+    .player {
+      flex-direction: column;
+      &__bird-img {
+        height: 100px;
+        width: 130px;
+        background-size: auto 90px;
+        flex-grow: 1;
+      }
+      &__container {
+        width: 100%;
+
+      }
+      &__bird-name {
+        font-size: 24px;
+      }
+    }
+    &__descr {
+      font-size: 14px;
+    }
   }
 }
