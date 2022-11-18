@@ -61,6 +61,13 @@ module.exports = {
         }
       },
       {
+        test: /\.(m4a|mp3|aac|ogg|wav)$/i,
+        loader: 'file-loader',
+        generator: {
+          filename: 'audio/[name][ext]'
+        }
+      },
+      {
         test: /\.(jpe?g|png|webp|gif|svg)$/i,
         use: [
           {

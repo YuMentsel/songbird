@@ -1,1 +1,59 @@
-@import 'libs/normalize.css';
+@import './libs/normalize.css';
+
+@font-face {
+  font-family: 'Comfortaa';
+  src: url('assets/fonts/comfortaa-bold.woff2') format('woff2'); //700
+}
+
+@font-face {
+  font-family: 'Inglobal';
+  src: url('assets/fonts/inglobal.woff2') format('woff2'); //400
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Comfortaa', sans-serif;
+  line-height: 1.5;
+  color: #ffffff;
+  scroll-behavior: smooth;
+  user-select: none;
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100vw;
+  min-height: 100vh;
+  background: url(./assets/images/background.jpg) center center / cover no-repeat;
+}
+
+.container {
+  max-width: 1200px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+@import './styles/variables';
+@import './styles/header';
+@import './styles/mainPage';
+@import './styles/player';
+@import './styles/answers';
+@import './styles/birdInfo';
+@import './styles/wonPage';
+@import './styles/footer';
+
+.none {
+  display: none;
+}
+
+.disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+.btn.disabled {
+  background-color: rgba(0, 0, 0, 0.6);
+}

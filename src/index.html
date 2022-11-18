@@ -8,6 +8,90 @@
   <title>Songbird</title>
 </head>
 <body class="root">
-  <h1>Songbird</h1>
+
+  <header class="header">
+    <div class="container header__container">
+      <div class="logo">
+        <h1 class="logo__title">Songbird</h1>
+        <img src="./assets/images/logo.png" alt="bird" class="logo__img">
+      </div>
+      <div class="score">
+        <div class="score__num">0</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container main__container">
+      <nav class="nav">
+        <ul class="nav__list">
+          <li class="nav__item active"><span>Разминка</span></li>
+          <li class="nav__item"><span>Воробьиные</span></li>
+          <li class="nav__item"><span>Лесные</span></li>
+          <li class="nav__item"><span>Певчие</span></li>
+          <li class="nav__item"><span>Хищные</span></li>
+          <li class="nav__item"><span>Морские</span></li>
+        </ul>
+      </nav>
+
+      <section id="player" class="player">
+        <div id="bird-img" id="bird-img" class="player__bird-img"></div>
+        <div class="player__container">
+          <div id="bird-name" class="player__bird-name">****************</div>
+          <div class="control">
+            <div id="play" class="control__play"></div>
+            <div id="curr-time" class="control__current-time">00:00</div>
+            <input id="seek-slider" type="range" min="1" max="100" value="0" class="control__slider control__slider_seek">
+            <div id="total-duration" class="control__total-duration">00:00</div>
+          </div>
+          <div class="control">
+            <div id="sound" class="control__sound on"></div>
+            <input id="volume-slider" type="range" min="1" max="100" value="70" class="control__slider control__slider_volume">
+          </div>
+        </div>
+      </section>
+
+      <section class="answers">
+        <ul class="answers__list"></ul>
+      </section>
+
+      <section class="bird-info">
+        <div id="player-2" class="bird-info__player player none">
+          <div id="bird-img-2" class="player__bird-img"></div>
+          <div class="player__container">
+            <div id="bird-name-2" class="player__bird-name">****************</div>
+            <div id="bird-species-2" class="player__bird-species">****************</div>
+            <div class="control">
+              <div id="play-2" class="control__play"></div>
+              <div id="curr-time-2" class="control__current-time">00:00</div>
+              <input  id="seek-slider-2" type="range" min="1" max="100" value="0" class="control__slider control__slider_seek">
+              <div id="total-duration-2" class="control__total-duration">00:00</div>
+            </div>
+            <div class="control">
+              <div id="sound-2" class="control__sound on"></div>
+              <input id="volume-slider-2" type="range" min="1" max="100" value="70" class="control__slider control__slider_volume">
+            </div>
+          </div>
+        </div>
+        <p id="descr" class="bird-info__descr">Послушайте плеер. <br> Выберите птицу из списка.</p>
+      </section>
+      <button id="next-level" class="btn disabled">Next Level</button>
+    </div>
+  </main>
+
+  <section class="won-page none">
+    <div class="container won-page__container">
+      <div class="won-page__message"></div>
+      <button id="new-game" class="won-page__btn btn">Попробовать еще раз</button>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footter__container">
+      <div class="footer__item link"><a href="https://github.com/YuMentsel" target="_blank"><img src="./assets/svg/github.svg" alt="github" class="github"></a></div>
+      <div class="footer__item">2022</div>
+      <div class="footer__item link"><a href="https://rs.school/js/" target="_blank"><img src="./assets/svg/rs_school.svg" alt="rss" class="rss"></a></div>
+    </div>
+  </footer>
 </body>
 </html>

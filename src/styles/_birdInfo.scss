@@ -1,0 +1,29 @@
+.bird-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: space-between;
+  height: 350px;
+  width: 50%;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 15px;
+  padding: 10px;
+  gap: 10px;
+
+  &__player{
+    background: none;
+    padding: 0px;
+    flex-grow: 0;
+  }
+
+  &__descr {
+    display: flex;
+    border-radius: 10px;
+    border: 2px solid $grey;
+    flex-grow: 1;
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 16px;
+  }
+}

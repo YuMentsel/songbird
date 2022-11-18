@@ -1,0 +1,30 @@
+.header {
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+}
+
+.logo {
+  position: relative;
+
+  &__title {
+    font-family: 'Inglobal';
+    font-size: 51px;
+    margin-bottom: 0;
+  }
+
+  &__img {
+    position: absolute;
+    width: 60px;
+    top: 14px;
+    left: 15px;
+  }
+}
+
+.score {
+  &__num {
+    font-size: 50px;
+  }
+}

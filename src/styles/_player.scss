@@ -1,0 +1,107 @@
+.player {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 15px;
+  padding: 10px;
+  width: 100%;
+  gap: 10px;
+
+  &__bird-img {
+    border-radius: 10px;
+    border: 2px solid $grey;
+    height: 200px;
+    width: 260px;
+    background: $grey url('./assets/svg/bird.svg') center bottom/contain no-repeat;
+    background-size: auto 190px;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    height: 200px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid $grey;
+  }
+
+  &__bird-name {
+    font-size: 1.7rem;
+    text-align: center;
+    line-height: 1;
+  }
+
+  &__bird-species {
+    text-align: center;
+  }
+}
+
+.control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__play {
+    padding: 20px;
+    background: url('./assets/svg/play.svg') center center/cover no-repeat;
+    background-size: 35px 35px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover,
+    &:active {
+      transform: scale(1.15);
+    }
+  }
+
+  .pause {
+    background-image: url('./assets/svg/pause.svg');
+  }
+
+  &__slider {
+    appearance: none;
+    height: 8px;
+    background: $yellow;
+    border-radius: 4px;
+
+    &_seek {
+      width: 75%;
+    }
+
+    &_volume {
+      width: 30%;
+    }
+
+    &::-webkit-slider-thumb {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      background: $main-green;
+      border: 3px solid #fff;
+      cursor: pointer;
+      border-radius: 100%;
+    }
+  }
+
+  &__current-time,
+  &__total-duration {
+    width: 70px;
+    text-align: center;
+  }
+
+  .on {
+    margin-right: 10px;
+    width: 35px;
+    height: 35px;
+    background-size: 35px 35px;
+    background-image: url('./assets/svg/sound_on.svg');
+    cursor: pointer;
+  }
+
+  .off {
+    background-image: url('./assets/svg/sound_off.svg');
+  }
+}
