@@ -1,5 +1,6 @@
-import { currBird } from '../index';
+import { currBird, logo, firstNav, galleryNav, nextLevelBtn } from '../index';
 
+const playPauseBtn = document.querySelector('#play');
 const playPauseBtn2 = document.querySelector('#play-2');
 const seekSlider2 = document.querySelector('#seek-slider-2');
 const soundBtn2 = document.querySelector('#sound-2');
@@ -18,7 +19,7 @@ seekSlider2.addEventListener('click', seekTo);
 volumeSlider2.addEventListener('click', setVolume);
 soundBtn2.addEventListener('click', toggleSound);
 
-function loadTrack(currBird) {
+function loadTrack2(currBird) {
   audio2.src = currBird.audio;
   audio2.load();
 }
@@ -29,7 +30,7 @@ function reset() {
   clearInterval(updateTimer);
   currTime2.textContent = '00:00';
   seekSlider2.value = 0;
-  loadTrack(currBird);
+  loadTrack2(currBird);
 }
 
 function playPauseTrack() {
@@ -37,7 +38,6 @@ function playPauseTrack() {
 }
 
 function playTrack() {
-  loadTrack(currBird);
   updateTimer = setInterval(setUpdate, 1000);
   audio2.play();
   isPlaying = true;
@@ -105,4 +105,18 @@ function toggleSound() {
   }
 }
 
-export { loadTrack, pauseTrack }
+document.addEventListener('click', (e) => {
+  if (
+    e.target == logo ||
+    e.target == firstNav ||
+    e.target == galleryNav ||
+    e.target == nextLevelBtn ||
+    logo.contains(e.target)
+  ) reset();
+});
+
+playPauseBtn.addEventListener('click', (e) => {
+  pauseTrack();
+});
+
+export { loadTrack2, pauseTrack, reset };

@@ -3,6 +3,7 @@ export function getBirdsNames(levelIndex, birdsData, answersList) {
   for (let i = 0; i < 6; i++) {
     const answer = document.createElement('li');
     answer.classList.add('answers__answer');
+    answer.setAttribute('data-index', i);;
     const birdName = birdsData[levelIndex][i].name;
     answer.textContent = birdName;
     answersList.append(answer);

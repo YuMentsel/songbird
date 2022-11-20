@@ -6,28 +6,44 @@ import birdsDataEn from "./modules/birdsDataEn";
 
 import { random, toDisableAll } from './modules/helpers';
 import { loadTrack, pauseTrack } from './modules/audioPlayer1';
-import './modules/audioPlayer2';
+import { loadTrack2 } from './modules/audioPlayer2';
+// import { insertBirdGallery } from "./modules/insertBirdGallery";
+import './modules/galleryAudioPlayer';
 import { getBirdsNames, removeBirdsNames } from './modules/createAnswersList';
-import { insertBirdInfo } from'./modules/insertBirdInfo';
+import { insertBirdInfo, removeBirdInfo } from'./modules/insertBirdInfo';
 import { audioYes, audioNo } from'./modules/setSoud';
 
-const levelNav = document.querySelectorAll('.nav__item');
-const scoreNum = document.querySelector('.score__num');
 
-const main = document.querySelector('.main');
+const levelNav = document.querySelectorAll('.main .nav__item');
+const scoreNum = document.querySelector('.score');
+
+const firstPage = document.querySelector('.first-page');
+const mainPage = document.querySelector('.main');
 const wonPage = document.querySelector('.won-page');
 
 const answersList = document.querySelector('.answers__list');
 const nextLevelBtn = document.querySelector('#next-level');
 const newGameBtn = document.querySelector('#new-game');
+const newGameBtnFirstPage = document.querySelector('#game-page');
+const galleryBtnFirstPage = document.querySelector('#gallery-page');
+const wonMessage = document.querySelector('.won-page__message');
+const wonMax = document.querySelector('.won-page__max');
+
+const logo = document.querySelector('.logo');
+const headerNav = document.querySelector('.nav');
+const firstNav = document.querySelector('#first');
+const gameNav = document.querySelector('#main');
+const galleryNav = document.querySelector('#gallery');
+const gallery = document.querySelector('.gallery');
+
 
 let levelIndex = 0;
 let birdIndex = random();
-let currBird = updateCurrBird();
+let currBird = updateCurrBird(birdIndex);
 let isTrueAnswer = false;
 let score = 0;
 
-function updateCurrBird() {
+function updateCurrBird(birdIndex) {
   return birdsData[levelIndex][birdIndex];
 }
 
@@ -42,27 +58,34 @@ let birdNames = getBirdsNames(levelIndex, birdsData, answersList);
 // Выбор ответа
 
 let errors = 0;
+let responded = false;
 
 answersList.addEventListener('click', (e) => {
   const answer = e.target;
-  const answersArr = document.querySelectorAll('.answers__answer');
+  const answerBird = updateCurrBird(answer.dataset.index);
   if (answer.closest('.answers__answer')) {
     if (answer.textContent === currBird.name) {
-      audioYes.play();
-      answer.style.color = '#588620';
-      answer.classList.add('green');
-      isTrueAnswer = true;
-      insertBirdInfo(isTrueAnswer, currBird);
-      pauseTrack();
-      getScore(errors);
-      nextLevelBtn.classList.remove('disabled');
-      toDisableAll(answersArr);
+      if (!responded) {
+        audioYes.play();
+        answer.style.color = '#588620';
+        answer.classList.add('green');
+        isTrueAnswer = true;
+        pauseTrack();
+        getScore(errors);
+        nextLevelBtn.classList.remove('disabled');
+        responded = true;
+        loadTrack2 (currBird);
+      }
     } else {
-      audioNo.play();
-      answer.style.color = '#e00038';
-      answer.classList.add('red');
-      errors += 1;
+      if (!responded) {
+        answer.style.color = '#e00038';
+        answer.classList.add('red');
+        errors += 1;
+        audioNo.play();
+      }
     }
+
+    insertBirdInfo(isTrueAnswer, responded, answerBird, currBird);
   }
 });
 
@@ -77,18 +100,20 @@ function changeLevel() {
     levelIndex++;
     createNewLevel()
   }
+  responded = false;
+  removeBirdInfo();
   nextLevelBtn.classList.add('disabled');
 }
 
 function createNewLevel() {
   birdIndex = random();
-  currBird = updateCurrBird();
+  currBird = updateCurrBird(birdIndex);
   isTrueAnswer = false;
   errors = 0;
   removeBirdsNames();
   birdNames = getBirdsNames(levelIndex, birdsData, answersList);
   console.log(currBird.name);
-  insertBirdInfo(isTrueAnswer, currBird);
+  insertBirdInfo(isTrueAnswer, responded, currBird);
   loadTrack(currBird);
   changeLevelNav(levelIndex);
 }
@@ -115,23 +140,70 @@ function setScore() {
 // Страница с поздравлением
 
 function showWonPage() {
-  main.classList.add('none');
+  if (score == 30) {
+    newGameBtn.classList.add('none');
+    wonMax.classList.remove('none');
+    wonMax.textContent = 'Игра закончена!'
+  }
+  mainPage.classList.add('none');
   wonPage.classList.remove('none');
-  const wonMessage= document.querySelector('.won-page__message');
+  firstPage.classList.add('none');
   wonMessage.innerHTML = `
   <span>Поздравляем!</span><br>
   Вы прошли викторину и набрали ${score} из 30 возможных баллов.`;
 }
 
 function newGame() {
-  main.classList.remove('none');
+  mainPage.classList.remove('none');
   wonPage.classList.add('none');
   levelIndex = 0;
   score = 0;
   setScore();
-  createNewLevel()
+  createNewLevel();
 }
 
-newGameBtn.addEventListener('click', newGame)
+function showMainPage() {
+  firstPage.classList.add('none');
+  mainPage.classList.remove('none');
+  wonPage.classList.add ('none');
+  scoreNum.classList.remove('none');
+  headerNav.classList.remove('none');
+  gallery.classList.add('none');
+}
 
-export { isTrueAnswer, currBird }
+function showFirstPage () {
+  firstPage.classList.remove('none');
+  mainPage.classList.add ('none');
+  wonPage.classList.add ('none');
+  scoreNum.classList.add('none');
+  headerNav.classList.add('none');
+  gallery.classList.add('none');
+}
+
+function showGallery () {
+  firstPage.classList.add('none');
+  mainPage.classList.add ('none');
+  mainPage.classList.add ('none');
+  scoreNum.classList.add('none');
+  headerNav.classList.remove('none');
+  gallery.classList.remove('none');
+}
+
+function startNewGame () {
+  showMainPage();
+  levelIndex = 0;
+  score = 0;
+  setScore();
+  createNewLevel();
+  nextLevelBtn.classList.add('disabled');
+}
+
+newGameBtnFirstPage.addEventListener('click', startNewGame)
+gameNav.addEventListener('click', startNewGame)
+newGameBtn.addEventListener('click', newGame)
+galleryBtnFirstPage.addEventListener('click', showGallery)
+logo.addEventListener('click', showFirstPage)
+firstNav.addEventListener('click', showFirstPage)
+galleryNav.addEventListener('click', showGallery)
+
+export { isTrueAnswer, currBird, logo, firstNav, gameNav, galleryNav, nextLevelBtn }

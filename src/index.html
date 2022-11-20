@@ -15,13 +15,34 @@
         <h1 class="logo__title">Songbird</h1>
         <img src="./assets/images/logo.png" alt="bird" class="logo__img">
       </div>
-      <div class="score">
-        <div class="score__num">0</div>
-      </div>
+      <nav class="nav none">
+        <ul class="nav__list">
+          <li id="first" class="nav__item">Начало</li>
+          <li id="main" class="nav__item">Играть</li>
+          <li id="gallery" class="nav__item">Галерея</li>
+        </ul>
+      </nav>
+      <div class="score none">0</div>
+
     </div>
   </header>
 
-  <main class="main">
+  <section class="first-page">
+    <div class="container">
+      <div class="bird-container">
+        <img class="nav-bird" src="./assets/images/chickadee.png" alt="bird">
+        <img class="nav-purple-bird" src="./assets/images/purpleBird.png" alt="bird">
+        <nav class="nav">
+          <ul class="nav__list">
+            <li id="game-page" class="nav__item">Играть</li>
+            <li id="gallery-page" class="nav__item">Галерея</li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <main class="main none">
     <div class="container main__container">
       <nav class="nav">
         <ul class="nav__list">
@@ -75,14 +96,45 @@
         </div>
         <p id="descr" class="bird-info__descr">Послушайте плеер. <br> Выберите птицу из списка.</p>
       </section>
-      <button id="next-level" class="btn disabled">Next Level</button>
+
+      <button id="next-level" class="btn disabled">Следующий уровень</button>
     </div>
   </main>
 
   <section class="won-page none">
     <div class="container won-page__container">
       <div class="won-page__message"></div>
+      <div class="won-page__max none"></div>
       <button id="new-game" class="won-page__btn btn">Попробовать еще раз</button>
+    </div>
+  </section>
+
+  <section class="gallery none">
+    <div class="container">
+      <div class="gallery__container">
+        <div id="gallery-player" class="player">
+          <div id="gallery-bird-img" class="player__bird-img"></div>
+          <div class="player__container">
+            <div id="gallery-bird-name" class="player__bird-name">****************</div>
+            <div id="gallery-bird-species" class="player__bird-species">****************</div>
+            <div class="control">
+              <div id="gallery-play" class="control__play"></div>
+              <div id="gallery-curr-time" class="control__current-time">00:00</div>
+              <input  id="gallery-seek-slider" type="range" min="1" max="100" value="0" class="control__slider control__slider_seek">
+              <div id="gallery-total-duration" class="control__total-duration">00:00</div>
+            </div>
+            <div class="control">
+              <div id="gallery-sound" class="control__sound on"></div>
+              <input id="gallery-volume-slider" type="range" min="1" max="100" value="70" class="control__slider control__slider_volume">
+            </div>
+          </div>
+        </div>
+        <p id="gallery-descr" class="gallery__descr"></p>
+        <div class="arrows">
+          <div class="arrows__prev-arrow"><img src="./assets/svg/arrow.svg" alt="prev"></div>
+          <div class="arrows__next-arrow"><img src="./assets/svg/arrow.svg" alt="next"></div>
+        </div>
+      </div>
     </div>
   </section>
 

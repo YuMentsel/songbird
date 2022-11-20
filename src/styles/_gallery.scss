@@ -1,0 +1,128 @@
+.gallery {
+  margin-bottom: 20px;
+
+  &__container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    min-height: 330px;
+    width: 70%;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .player {
+    position: relative;
+    background: none;
+    padding: 0px;
+    flex-grow: 0;
+    z-index: 2;
+  }
+
+  &__descr {
+    display: flex;
+    border-radius: 10px;
+    border: 2px solid $grey;
+    flex-grow: 1;
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 19px;
+  }
+}
+
+.arrows {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 116%;
+
+  &__prev-arrow,
+  &__next-arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: $main-green;
+    cursor: pointer;
+    img {
+      margin: 0 0 0 3px;
+    }
+
+    &:hover,
+    &:active {
+      background-color: $yellow;
+    }
+  }
+
+  &__prev-arrow img {
+    margin: 0 3px 0 0;
+    transform: scale(-1, 1);
+  }
+}
+
+@media (max-width: 1060px) {
+  .gallery {
+    .player {
+      &__bird-img {
+        height: 150px;
+        width: 195px;
+        background-size: auto 140px;
+      }
+
+      &__container {
+        height: 150px;
+        padding: 10px;
+      }
+
+      &__bird-name {
+        font-size: 24px;
+      }
+    }
+  }
+}
+
+@media (max-width: 960px) {
+  .gallery {
+    &__container {
+      width: 100%;
+    }
+
+    .player {
+      flex-direction: column;
+      &__bird-img {
+        height: 100px;
+        width: 130px;
+        background-size: auto 90px;
+        flex-grow: 1;
+      }
+
+      &__container {
+        width: 100%;
+      }
+
+      &__bird-name {
+        font-size: 24px;
+      }
+    }
+
+    &__descr {
+      font-size: 14px;
+    }
+  }
+
+  .arrows {
+    top: 60px;
+    width: calc((100% + 200px) / 2);
+  }
+}
+

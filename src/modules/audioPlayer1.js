@@ -1,6 +1,7 @@
-import { currBird } from '../index';
+import { currBird, logo, firstNav, galleryNav, nextLevelBtn } from '../index';
 
 const playPauseBtn = document.querySelector('#play');
+const playPauseBtn2 = document.querySelector('#play-2');
 const seekSlider = document.querySelector('#seek-slider');
 const soundBtn = document.querySelector('#sound');
 const volumeSlider = document.querySelector('#volume-slider');
@@ -104,4 +105,18 @@ function toggleSound() {
   }
 }
 
-export { loadTrack, pauseTrack }
+document.addEventListener('click', (e) => {
+  if (
+    e.target == logo ||
+    e.target == firstNav ||
+    e.target == galleryNav ||
+    e.target == nextLevelBtn ||
+    logo.contains(e.target)
+  ) reset();
+});
+
+playPauseBtn2.addEventListener('click', (e) => {
+  pauseTrack();
+});
+
+export { loadTrack, pauseTrack };

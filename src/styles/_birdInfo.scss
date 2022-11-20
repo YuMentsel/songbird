@@ -11,7 +11,7 @@
   padding: 10px;
   gap: 10px;
 
-  &__player{
+  &__player {
     background: none;
     padding: 0px;
     flex-grow: 0;
@@ -36,10 +36,12 @@
         width: 195px;
         background-size: auto 140px;
       }
+
       &__container {
         height: 150px;
         padding: 10px;
       }
+
       &__bird-name {
         font-size: 24px;
       }
@@ -51,20 +53,23 @@
   .bird-info {
     .player {
       flex-direction: column;
+
       &__bird-img {
         height: 100px;
         width: 130px;
         background-size: auto 90px;
         flex-grow: 1;
       }
+
       &__container {
         width: 100%;
-
       }
+
       &__bird-name {
         font-size: 24px;
       }
     }
+
     &__descr {
       font-size: 14px;
     }
