@@ -9,7 +9,7 @@
     align-items: center;
     justify-content: space-between;
     margin: 0 auto;
-    min-height: 330px;
+    min-height: 368px;
     width: 70%;
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 15px;
@@ -123,6 +123,7 @@
   .arrows {
     top: 60px;
     width: calc((100% + 200px) / 2);
+    z-index: 3;
   }
 }
 
