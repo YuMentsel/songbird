@@ -4,16 +4,27 @@
     justify-content: space-between;
     align-items: flex-end;
   }
+
+  nav .blue-theme {
+    color: $blue;
+
+      &:hover,
+      &:active {
+        color: $dark-blue;
+      }
+  }
 }
 
 .logo {
   position: relative;
   cursor: pointer;
-
   &__title {
     font-family: 'Inglobal';
     font-size: 51px;
     margin-bottom: 0;
+    &.blue-theme {
+      color: #303030;
+    }
   }
 
   &__img {
@@ -24,6 +35,24 @@
   }
 }
 
+.theme {
+  margin-bottom: 20px;
+  width: 30px;
+  height: 30px;
+  transition: all 0.5s;
+  cursor: pointer;
+  border-radius: 50%;
+  background: $blue url('./assets/svg/settings.svg') center center/cover
+    no-repeat;
+  background-size: 24px auto;
+  &.blue-theme {
+    background-color: $main-green;
+  }
+}
+
 .score {
   font-size: 50px;
+  &.blue-theme {
+    color: #303030;
+  }
 }

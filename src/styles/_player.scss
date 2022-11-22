@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.4);
   border-radius: 15px;
   padding: 10px;
   width: 100%;
@@ -79,7 +79,7 @@
       appearance: none;
       width: 20px;
       height: 20px;
-      background: $main-green;
+      background: $yellow;
       border: 3px solid #fff;
       cursor: pointer;
       border-radius: 100%;

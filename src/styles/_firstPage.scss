@@ -23,7 +23,7 @@
     position: absolute;
     width: 200px;
     right: 0;
-    transform: translate( 8%, -98%);
+    transform: translate(8%, -98%);
     top: 0;
   }
 
@@ -45,6 +45,13 @@
       &:hover,
       &:active {
         background-color: $dark-green;
+      }
+
+      &.blue-theme {
+        &:hover,
+        &:active {
+          background-color: $dark-blue;
+        }
       }
     }
   }

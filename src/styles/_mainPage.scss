@@ -31,10 +31,18 @@
     font-size: 18px;
     background-color: $main-green;
     border-radius: 10px;
+
+    &.blue-theme {
+      background-color: $blue;
+    }
   }
 
   .active {
     background-color: $dark-green;
+
+    &.blue-theme {
+      background-color: $dark-blue;
+    }
   }
 }
 
@@ -47,12 +55,16 @@
   border: none;
   background-color: $main-green;
   cursor: pointer;
+
+  &.blue-theme {
+    background-color: $blue;
+  }
 }
 
 @media (max-width: 1060px) {
   .nav__item {
     height: 30px;
-    width:30%;
+    width: 30%;
     font-size: 16px;
   }
 }
@@ -60,7 +72,7 @@
 @media (max-width: 520px) {
   .nav__item {
     height: 25px;
-    width:45%;
+    width: 45%;
     font-size: 14px;
   }
 }

@@ -15,13 +15,36 @@ let updateTimer;
 const audio2 = new Audio();
 
 playPauseBtn2.addEventListener('click', playPauseTrack);
-seekSlider2.addEventListener('click', seekTo);
-volumeSlider2.addEventListener('click', setVolume);
+seekSlider2.addEventListener('change', seekTo);
+volumeSlider2.addEventListener('change', setVolume);
 soundBtn2.addEventListener('click', toggleSound);
 
 function loadTrack2(currBird) {
   audio2.src = currBird.audio;
   audio2.load();
+}
+
+audio2.addEventListener(
+  'loadeddata',
+  () => {
+    totalDuration2.textContent = getTimeCode();
+  },
+  false
+);
+
+function getTimeCode() {
+  let durationMinutes = Math.floor(audio2.duration / 60);
+  let durationSeconds = Math.floor(audio2.duration - durationMinutes * 60);
+
+  if (durationSeconds < 10) {
+    durationSeconds = '0' + durationSeconds;
+  }
+
+  if (durationMinutes < 10) {
+    durationMinutes = '0' + durationMinutes;
+  }
+
+  return totalDuration2.textContent = durationMinutes + ':' + durationSeconds;
 }
 
 function reset() {
@@ -64,24 +87,16 @@ function setUpdate() {
 
     let currentMinutes = Math.floor(audio2.currentTime / 60);
     let currentSeconds = Math.ceil(audio2.currentTime - currentMinutes * 60);
-    let durationMinutes = Math.floor(audio2.duration / 60);
-    let durationSeconds = Math.floor(audio2.duration - durationMinutes * 60);
 
     if (currentSeconds < 10) {
       currentSeconds = '0' + currentSeconds;
     }
-    if (durationSeconds < 10) {
-      durationSeconds = '0' + durationSeconds;
-    }
+
     if (currentMinutes < 10) {
       currentMinutes = '0' + currentMinutes;
     }
-    if (durationMinutes < 10) {
-      durationMinutes = '0' + durationMinutes;
-    }
 
     currTime2.textContent = currentMinutes + ':' + currentSeconds;
-    totalDuration2.textContent = durationMinutes + ':' + durationSeconds;
 
     if (currTime2.textContent === totalDuration2.textContent) reset(currTime2);
   }

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <title>Songbird</title>
 </head>
@@ -14,6 +15,7 @@
       <div class="logo">
         <h1 class="logo__title">Songbird</h1>
         <img src="./assets/images/logo.png" alt="bird" class="logo__img">
+        <!-- <div class="language"></div> -->
       </div>
       <nav class="nav none">
         <ul class="nav__list">
@@ -22,6 +24,7 @@
           <li id="gallery" class="nav__item">Галерея</li>
         </ul>
       </nav>
+      <div class="theme"></div>
       <div class="score none">0</div>
 
     </div>
@@ -63,7 +66,7 @@
             <div id="play" class="control__play"></div>
             <div id="curr-time" class="control__current-time">00:00</div>
             <input id="seek-slider" type="range" min="1" max="100" value="0" class="control__slider control__slider_seek">
-            <div id="total-duration" class="control__total-duration">00:00</div>
+            <div id="total-duration" class="control__total-duration"></div>
           </div>
           <div class="control">
             <div id="sound" class="control__sound on"></div>
@@ -86,7 +89,7 @@
               <div id="play-2" class="control__play"></div>
               <div id="curr-time-2" class="control__current-time">00:00</div>
               <input  id="seek-slider-2" type="range" min="1" max="100" value="0" class="control__slider control__slider_seek">
-              <div id="total-duration-2" class="control__total-duration">00:00</div>
+              <div id="total-duration-2" class="control__total-duration"></div>
             </div>
             <div class="control">
               <div id="sound-2" class="control__sound on"></div>
@@ -121,7 +124,7 @@
               <div id="gallery-play" class="control__play"></div>
               <div id="gallery-curr-time" class="control__current-time">00:00</div>
               <input  id="gallery-seek-slider" type="range" min="1" max="100" value="0" class="control__slider control__slider_seek">
-              <div id="gallery-total-duration" class="control__total-duration">00:00</div>
+              <div id="gallery-total-duration" class="control__total-duration"></div>
             </div>
             <div class="control">
               <div id="gallery-sound" class="control__sound on"></div>
@@ -131,8 +134,8 @@
         </div>
         <p id="gallery-descr" class="gallery__descr"></p>
         <div class="arrows">
-          <div class="arrows__prev-arrow"><img src="./assets/svg/arrow.svg" alt="prev"></div>
-          <div class="arrows__next-arrow"><img src="./assets/svg/arrow.svg" alt="next"></div>
+          <div class="arrows__prev-arrow arrow"><img src="./assets/svg/arrow.svg" alt="prev"></div>
+          <div class="arrows__next-arrow arrow"><img src="./assets/svg/arrow.svg" alt="next"></div>
         </div>
       </div>
     </div>

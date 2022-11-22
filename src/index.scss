@@ -28,6 +28,9 @@
   width: 100%;
   min-height: 100vh;
   background: url(./assets/images/background.jpg) center center / cover no-repeat;
+  &.blue-theme-bg {
+    background: url(./assets/images/backgroundLight.jpg) center center / cover no-repeat;
+  }
 }
 
 .container {
@@ -58,7 +61,7 @@
 }
 
 .btn.disabled {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 @media (max-width: 580px) {

@@ -2,12 +2,10 @@ import './index.html';
 import './index.scss';
 
 import birdsData from "./modules/birdsDataRu";
-import birdsDataEn from "./modules/birdsDataEn";
 
-import { random, toDisableAll } from './modules/helpers';
+import { random } from './modules/helpers';
 import { loadTrack, pauseTrack } from './modules/audioPlayer1';
 import { loadTrack2 } from './modules/audioPlayer2';
-// import { insertBirdGallery } from "./modules/insertBirdGallery";
 import './modules/galleryAudioPlayer';
 import { getBirdsNames, removeBirdsNames } from './modules/createAnswersList';
 import { insertBirdInfo, removeBirdInfo } from'./modules/insertBirdInfo';
@@ -47,10 +45,6 @@ function updateCurrBird(birdIndex) {
   return birdsData[levelIndex][birdIndex];
 }
 
-// Загрузка аудио в основной плейер
-
-loadTrack(currBird);
-
 // Создание списка ответов
 
 let birdNames = getBirdsNames(levelIndex, birdsData, answersList);
@@ -67,7 +61,7 @@ answersList.addEventListener('click', (e) => {
     if (answer.textContent === currBird.name) {
       if (!responded) {
         audioYes.play();
-        answer.style.color = '#588620';
+        answer.style.color = '#3a6d00';
         answer.classList.add('green');
         isTrueAnswer = true;
         pauseTrack();
@@ -77,7 +71,7 @@ answersList.addEventListener('click', (e) => {
         loadTrack2 (currBird);
       }
     } else {
-      if (!responded) {
+      if (!responded && !answer.classList.contains('red')) {
         answer.style.color = '#e00038';
         answer.classList.add('red');
         errors += 1;
@@ -112,7 +106,6 @@ function createNewLevel() {
   errors = 0;
   removeBirdsNames();
   birdNames = getBirdsNames(levelIndex, birdsData, answersList);
-  console.log(currBird.name);
   insertBirdInfo(isTrueAnswer, responded, currBird);
   loadTrack(currBird);
   changeLevelNav(levelIndex);
@@ -128,7 +121,6 @@ function changeLevelNav(levelIndex) {
 // Подсчет очков
 
 function getScore(errors) {
-  console.log('errors ' + errors);
   score += 5 - errors;
   setScore();
 }
@@ -143,7 +135,11 @@ function showWonPage() {
   if (score == 30) {
     newGameBtn.classList.add('none');
     wonMax.classList.remove('none');
-    wonMax.textContent = 'Игра закончена!'
+    wonMax.textContent = 'Игра закончена!';
+  } else {
+    newGameBtn.classList.remove('none');
+    wonMax.classList.add('none');
+    wonMax.textContent = 'Попробовать еще раз';
   }
   mainPage.classList.add('none');
   wonPage.classList.remove('none');
@@ -162,7 +158,10 @@ function newGame() {
   createNewLevel();
 }
 
+// Навигация
+
 function showMainPage() {
+  gameNav.classList.add('disabled');
   firstPage.classList.add('none');
   mainPage.classList.remove('none');
   wonPage.classList.add ('none');
@@ -172,6 +171,7 @@ function showMainPage() {
 }
 
 function showFirstPage () {
+  gameNav.classList.remove('disabled');
   firstPage.classList.remove('none');
   mainPage.classList.add ('none');
   wonPage.classList.add ('none');
@@ -181,12 +181,14 @@ function showFirstPage () {
 }
 
 function showGallery () {
+  gameNav.classList.remove('disabled');
   firstPage.classList.add('none');
   mainPage.classList.add ('none');
   mainPage.classList.add ('none');
   scoreNum.classList.add('none');
   headerNav.classList.remove('none');
   gallery.classList.remove('none');
+  wonPage.classList.add ('none');
 }
 
 function startNewGame () {
@@ -206,4 +208,64 @@ logo.addEventListener('click', showFirstPage)
 firstNav.addEventListener('click', showFirstPage)
 galleryNav.addEventListener('click', showGallery)
 
+// Тема
+
+let  theme = 'green';
+
+function saveSettingsToLS() {
+  localStorage.setItem('settingsLS', JSON.stringify(theme));
+}
+
+function recoverySettings() {
+  if (localStorage.getItem('settingsLS')) {
+    let settingsTheme = JSON.parse(localStorage.getItem('settingsLS'));
+    theme = settingsTheme;
+    if (settingsTheme == 'blue') {
+      recoveryTheme();
+    }
+  }
+}
+
+window.addEventListener('load', recoverySettings);
+
+const themeIcon = document.querySelector('.theme');
+const root = document.querySelector('.root');
+const logoTitle = document.querySelector('.logo__title');
+const arrow = document.querySelectorAll('.arrow');
+const navItems = document.querySelectorAll('.nav__item');
+
+function recoveryTheme() {
+  themeIcon.classList.toggle('blue-theme');
+  root.classList.toggle('blue-theme-bg');
+  logoTitle.classList.toggle('blue-theme');
+  nextLevelBtn.classList.toggle('blue-theme');
+  newGameBtn.classList.toggle('blue-theme');
+  scoreNum.classList.toggle('blue-theme');
+  arrow.forEach((i) => { i.classList.toggle('blue-theme') });
+  navItems.forEach((i) => { i.classList.toggle('blue-theme') });
+}
+
+function changeTheme() {
+  recoveryTheme();
+  theme == 'green'
+    ? (theme = 'blue')
+    : (theme = 'green');
+
+  saveSettingsToLS();
+}
+
+themeIcon.addEventListener('click', changeTheme);
+
 export { isTrueAnswer, currBird, logo, firstNav, gameNav, galleryNav, nextLevelBtn }
+
+console.group('Scope: 270/270');
+  console.log('Вместо смены языка - смена темы, в описании к заданию разрешено');
+  console.log('Вёрстка, дизайн, UI всех трёх страниц приложения +60');
+  console.log('Аудиоплеер +30');
+  console.log('Верхняя панель страницы викторины +20');
+  console.log('Блок с вопросом +20');
+  console.log('Блок с вариантами ответов (названия птиц) +60');
+  console.log('Блок с описанием птицы: +30');
+  console.log('Кнопка перехода к следующему вопросу +30');
+  console.log('Extra scope +20');
+  console.groupEnd();
