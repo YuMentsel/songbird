@@ -192,6 +192,8 @@ function showGallery () {
 }
 
 function startNewGame () {
+  responded = false;
+  removeBirdInfo();
   showMainPage();
   levelIndex = 0;
   score = 0;
